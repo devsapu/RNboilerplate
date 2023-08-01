@@ -5,10 +5,11 @@ const SignInScreen = () => {
   const [name, setName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [email, setEmail] = useState('');
+  const [passWord, setPassword] = useState('');
 
   const handleSignIn = () => {
     // Do something with name, contact number, and email
-    console.log(name, contactNumber, email);
+    console.log(name, contactNumber, email, passWord);
   };
 
   return (
@@ -35,6 +36,14 @@ const SignInScreen = () => {
         placeholder="Email"
         autoCapitalize="none"
         keyboardType="email-address"
+      />
+       <TextInput
+        style={styles.input}
+        onChangeText={setPassword}
+        value={passWord}
+        placeholder="Password"
+        autoCapitalize="none"
+        keyboardType="visible-password"
       />
       <Button title="Sign In" onPress={handleSignIn} />
     </View>
