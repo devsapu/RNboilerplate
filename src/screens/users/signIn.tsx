@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import api from '../../utilities/network/httpService';
 
 const SignInScreen = () => {
   const [name, setName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [passWord, setPassword] = useState('');
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {
-    // Do something with name, contact number, and email
-    console.log(name, contactNumber, email, passWord);
+  const handleSignIn = async() => {
+    try {
+      const response = await api.post('/api/users/signin', { name, contactNumber, email,username, password });
+      console.log('response',response)
+    } catch (error) {
+      console.log(error);
+      // handle error
+    }
   };
 
   return (
@@ -39,8 +46,16 @@ const SignInScreen = () => {
       />
        <TextInput
         style={styles.input}
+        onChangeText={setUsername}
+        value={username}
+        placeholder="Usernanme"
+        autoCapitalize="none"
+        keyboardType="default"
+      />
+       <TextInput
+        style={styles.input}
         onChangeText={setPassword}
-        value={passWord}
+        value={password}
         placeholder="Password"
         autoCapitalize="none"
         keyboardType="visible-password"

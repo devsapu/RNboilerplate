@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, {useState} from 'react';
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import api from '../../../utilities/network/httpService';
 
 const LoginScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Do something with username and password
-    console.log(username, password);
+  const handleLogin = async () => {
+    try {
+      const response = await api.post('/login', {username, password});
+      console.log(response.data);
+      // navigate to another screen, update context, etc.
+    } catch (error) {
+      console.log(error);
+      // handle error
+    }
   };
 
   return (
