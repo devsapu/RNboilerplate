@@ -1,22 +1,55 @@
-import React, {useRef} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {Modalize} from 'react-native-modalize';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export const Login = () => {
-  const modalizeRef = useRef<Modalize>(null);
+const LoginScreen = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const onOpen = () => {
-    modalizeRef.current?.open();
+  const handleLogin = () => {
+    // Do something with username and password
+    console.log(username, password);
   };
 
   return (
-    <>
-      <TouchableOpacity onPress={onOpen}>
-        <Text>Open the modal</Text>
-      </TouchableOpacity>
-
-      <Modalize ref={modalizeRef}>...your content</Modalize>
-    </>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setUsername}
+        value={username}
+        placeholder="Username"
+        autoCapitalize="none"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setPassword}
+        value={password}
+        placeholder="Password"
+        secureTextEntry
+      />
+      <Button title="Login" onPress={handleLogin} />
+    </View>
   );
 };
-export default Login;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+  },
+});
+
+export default LoginScreen;
