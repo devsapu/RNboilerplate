@@ -3,7 +3,7 @@ import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import api from '../../../utilities/network/httpService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }:any) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
@@ -14,6 +14,7 @@ const LoginScreen = () => {
       if (response.data.token) {
         await AsyncStorage.setItem('userToken', response.data.token);
         api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+        navigation.navigate('Home')
       }
     
       return response.data;
