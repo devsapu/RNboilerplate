@@ -1,36 +1,16 @@
-
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../utilities/network/httpService'; 
 
 const HomeScreen = ({ navigation }:any) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to SLDoc</Text>
-      <Text style={styles.subtitle}>Now you can access your doctor easily</Text>
-      <Button 
-        title="Go to Login" 
-        onPress={() => navigation.navigate('Landing')} 
-      />
-    </View>
-  );
+  return<View style={{justifyContent:'center', alignItems:'center' ,flex:1}}>
+    <Text>Welcome to SL doc</Text>
+  </View>
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  subtitle: {
-    fontSize: 18,
-    marginBottom: 32,
-  },
+  // your styles here
 });
 
 export default HomeScreen;
