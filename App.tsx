@@ -5,8 +5,20 @@ import LandingScreen from './src/screens/Landing';
 import LoginScreen from './src/screens/users/login';
 import SignInScreen from './src/screens/users/signIn';
 import HomeScreen from './src/screens/Home';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ProfileScreen from './src/screens/MyProfile';
+import MyAppointmentScreen from './src/screens/MyAppointments';
+const Tab = createBottomTabNavigator();
 
-
+function HomeTabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="My Appointment" component={MyAppointmentScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +29,7 @@ const App = () => {
         <Stack.Screen name="Landing" component={LandingScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
