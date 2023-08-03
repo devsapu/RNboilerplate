@@ -7,15 +7,47 @@ import SignInScreen from './src/screens/users/signIn';
 import HomeScreen from './src/screens/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from './src/screens/MyProfile';
-import MyAppointmentScreen from './src/screens/MyAppointments';
+import MyAppointmentsScreen from './src/screens/MyAppointments';
+import { AppointmentIcon, HomeIcon, ProfileIcon } from './assetes/icons';
 const Tab = createBottomTabNavigator();
 
 function HomeTabNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="My Appointment" component={MyAppointmentScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Navigator screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        if (route.name === 'Home') {
+          return <HomeIcon/>;
+        }
+        if (route.name === 'My Appointment') {
+          return <AppointmentIcon/>;
+        }if (route.name === 'Profile') {
+          return <ProfileIcon/>;
+        }
+        // Similarly for other tabs
+      },
+    })}
+    tabBarOptions={{
+      activeTintColor: 'green',
+      inactiveTintColor: 'gray',
+    }}>
+      <Tab.Screen
+  name="Home"
+  component={HomeScreen}
+  options={{ headerShown: false, tabBarIcon: ({ color, size }) => (<HomeIcon color={color} size={size} />) }}
+/>
+
+
+<Tab.Screen
+  name="MyAppointments"
+  component={MyAppointmentsScreen}
+  options={{ headerShown: false, tabBarIcon: ({ color, size }) => (<AppointmentIcon color={color} size={size} />) }}
+/>
+<Tab.Screen
+  name="Profile"
+  component={ProfileScreen}
+  options={{ headerShown: false, tabBarIcon: ({ color, size }) => (<ProfileIcon color={color} size={size} />) }}
+/>
+
     </Tab.Navigator>
   );
 }

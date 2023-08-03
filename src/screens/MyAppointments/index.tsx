@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
-const MyAppointmentScreen = () => {
+const MyAppointmentsScreen = () => {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>My Appointment!</Text>
       </View>
     );
   }
-export default MyAppointmentScreen  
+export default MyAppointmentsScreen  
